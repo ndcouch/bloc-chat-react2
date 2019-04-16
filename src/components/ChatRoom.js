@@ -1,5 +1,16 @@
 import React, { Component } from "react";
-//import * as firebase from "firebase";
+import * as fb from "firebase";
+
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyDMaAbq5tL7DaISsaDcnNcpNdqHS6LYFZs",
+  authDomain: "bloc-chat-react2-cbe3a.firebaseapp.com",
+  databaseURL: "https://bloc-chat-react2-cbe3a.firebaseio.com",
+  projectId: "bloc-chat-react2-cbe3a",
+  storageBucket: "bloc-chat-react2-cbe3a.appspot.com",
+  messagingSenderId: "385433353176"
+};
+const firebase = fb.initializeApp(config);
 
 class ChatRoom extends Component {
   constructor(props, context) {
@@ -17,6 +28,7 @@ class ChatRoom extends Component {
       .database()
       .ref("messages/")
       .on("value", snapshot => {
+        //child_added?
         const currentMessages = snapshot.val();
 
         if (currentMessages != null) {
